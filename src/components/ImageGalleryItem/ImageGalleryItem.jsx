@@ -8,17 +8,13 @@ import { Modal } from 'components/Modal/Modal';
 export const ImageGalleryItem = ({ webformatURL, tags, largeImageURL }) => {
   const [isShowModal, setIsShowModal] = useState(false);
 
-  const showModal = () => {
-    setIsShowModal(true);
-  };
-
-  const hideModal = () => {
-    setIsShowModal(false);
+  const toggleModal = () => {
+    setIsShowModal(prev => !prev);
   };
 
   const onImageClick = evt => {
     evt.preventDefault();
-    showModal();
+    toggleModal();
   };
 
   return (
@@ -30,7 +26,7 @@ export const ImageGalleryItem = ({ webformatURL, tags, largeImageURL }) => {
         <Modal
           largeImageURL={largeImageURL}
           tags={tags}
-          hideModal={hideModal}
+          toggleModal={toggleModal}
         />
       )}
     </>

@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import { ModalStyled, Overlay } from './Modal.styled';
 
-export const Modal = ({ hideModal, largeImageURL, tags }) => {
+export const Modal = ({ toggleModal, largeImageURL, tags }) => {
   const handleBackdropClick = ({ target, currentTarget }) => {
     if (target === currentTarget) {
-      hideModal();
+      toggleModal();
     }
   };
 
   useEffect(() => {
     const handleEscPress = evt => {
       if (evt.code === 'Escape') {
-        hideModal();
+        toggleModal();
       }
     };
 
@@ -20,7 +20,7 @@ export const Modal = ({ hideModal, largeImageURL, tags }) => {
     return () => {
       document.removeEventListener('keydown', handleEscPress);
     };
-  }, [hideModal]);
+  }, [toggleModal]);
 
   return (
     <Overlay onClick={handleBackdropClick}>
